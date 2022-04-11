@@ -10,17 +10,17 @@ const ShowPassword = (props) => {
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
-  const { value, onChange } = props
+  const { value, onChange,onBlur } = props
   return (
     <Form.Group className="mb-3 d-flex flex-row " >
       <Form.Control
-        id="password"
         name="password"
         className="text-end inputs"
         type={passwordShown ? "text" : "password"}
         value={value}
         placeholder="کلمه عبور"
         onChange={onChange}
+        onBlur={onBlur}
         required
       />
       <span

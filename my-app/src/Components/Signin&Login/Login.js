@@ -13,6 +13,20 @@ const Login = () => {
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
         },
+        validate:values => {
+            const errors = {};
+            if (!values.email)  {
+                errors.email = 'Required';
+            } else if (
+                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+            ) {
+                errors.email = 'Invalid email address';
+            }
+            if (values.password.length < 6) {
+                errors.password = 'password have to be at least 6 characters';
+            }
+            return errors;
+        }
     });
 
     //
@@ -32,9 +46,15 @@ const Login = () => {
                         required
                     />
                 </Form.Group>
+                <p className="error">
+                    {formik.errors.email}
+                </p>
                 <ShowPassword
                     value={formik.values.password}
                     onChange={formik.handleChange} />
+                <p className="error">
+                    {formik.errors.password}
+                </p>
 
                 <Button className="forget ">فراموش کردید؟</Button>
                 <Button className="col-12 buttons" variant="primary" type="submit">
