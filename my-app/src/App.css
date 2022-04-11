@@ -1,3 +1,106 @@
-.App {
+body{
+  background-color: rgb(40, 53, 65);
+  margin-top:0px;
+  padding-top:30px;
+}
+.inputs{
+  background-color: rgb(40, 53, 65);
+  border:1px solid rgb(126, 126, 126);
+  border-radius:0px;
+  color:white;
+  margin: 2px;
+  height: 50px;
+  margin: 5px;
+}
+.buttons{
+  background-color: rgb(23, 172, 140);
+  border-color: rgb(23, 172, 140);
+  color: white;
+  font-size:18px;
+  margin:30px 0;
+  margin-left: 5px;
+  border-radius:0px;
+}
+.forget{
+  color: rgb(23, 172, 140);
+  text-decoration: none;
+  float: right;
+  font-size:18px;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;  
+}
+.forget:hover{
+  color: white;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;  
+
+}
+.buttons:hover{
+  background-color: rgb(23, 172, 140);
+  border-color: rgb(23, 172, 140);
+
+}
+.iconeHolder{
+  background-color: rgb(23, 172, 140);
+  height:50px;
+  margin-top: 5px;
+}
+h1{
+  color:white;
+  margin: 50px 0;
+}
+.tabs__list{
+  display:flex;
+  flex-direction:row ;
+  justify-content: space-between;
+  align-items:center;
+  width: 68%;
+  height: 50px;
+  margin: 0 auto;
+  margin-top:50px;
+  padding:0px
+
+}
+.tabs__item{
+  list-style-type:none;
+  width:100%;
+  height: 50px;
   text-align: center;
+  background-color: rgb(90, 89, 97);
+  color: white;
+  font-size:18px;
+  padding-top:6px;
+  }
+.tabs__item:hover{
+  border-bottom:3px solid rgb(253, 253, 253);
+}
+.tabs__content{
+  font-size: 28px;
+  display:none;
+}
+.active{
+  display:block;
+}
+.activeTab{
+  background-color: rgb(23, 172, 140);
+}
+.succsess{
+  color:green;
+  font-size:30px;
+ margin: 0 auto;
+}
+.succsess::before{
+  content:'\2714 موفقیت';
+  color:green;
+}
+.failer{
+  color:red;
+  font-size:30px;
+  margin: 0 auto;
+}
+.failer::before{
+  content:'\2717 شکست';
+  color:red;
 }
