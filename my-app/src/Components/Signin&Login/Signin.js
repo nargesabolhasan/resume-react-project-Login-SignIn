@@ -96,7 +96,7 @@ const Signin = ({ parentCallback }) => {
                     }, 400);
 
                     
-                    console.log(values)
+                    console.log(user)
                 }}
             >
                 {({
@@ -173,20 +173,25 @@ const Signin = ({ parentCallback }) => {
                         <>
                         <Form.Group className="mb-3 " >
                             <Form.Label className="text-white fs-5">استان</Form.Label>
+                            <>
                             <Form.Select
                                 className="text-end inputs"
                                 id="city-input"
                                 name="city"
-                                onChange={handleChange=(e)=>{selectCityState(e)}}
+                                onChange={(e) => {
+                                    selectCityState(e)
+                                    setUser(prev => ({ ...prev, city: e.target.value }))
+                                }
+                                }
                                 onBlur={handleBlur}
-                                value={values.city}
                                 required
                             >
-                                 <option ></option>
+                                 <option></option>
                                 {Object.keys(city)?.map((item, i) => {
                                     return <option key={i}>{item}</option>
                                 })}
                             </Form.Select >
+                            </>
                         </Form.Group>
                         </>
                         <>
@@ -194,10 +199,9 @@ const Signin = ({ parentCallback }) => {
                             <Form.Label className="text-white fs-5">(ابتدا استان انتخاب شود)شهرستان</Form.Label>
                             <Form.Select
                                 required
-                                value={values.state}
                                 id="state-input"
                                 name="state"
-                                onChange={handleChange}
+                                onChange={(e) => setUser(prev => ({ ...prev, state: e.target.value }))}
                                 onBlur={handleBlur}
                                 ref={selectInput2}
                                 className="text-end inputs"
@@ -209,13 +213,35 @@ const Signin = ({ parentCallback }) => {
                             </Form.Select >
                         </Form.Group>
                         </>
+                        <>
+                        <Form.Group className="mb-3" >
+                            <Form.Label className="text-white fs-5">محل تولد</Form.Label>
+                            <Form.Select
+                                required
+                                id="locOfBirth-input"
+                                name="locOfBirth"
+                                onChange={(e) => setUser(prev => ({ ...prev, locOfBirth: e.target.value }))}
+                                onBlur={handleBlur}
+                                className="text-end inputs"
+                            >
+                                <option></option>
+                                {cityState.map((item, index) => (
+                                    <option key={index}>{item}</option>
+                                ))}
+                            </Form.Select >
+                        </Form.Group>
+                        </>
+                        
                         <Form.Group className="mb-3" >
                             <Form.Label className="text-white fs-5">مدرک تحصیلی</Form.Label>
                             <Form.Select
                                 required
                                 id="education-input"
                                 name="education"
-                                onChange={handleChange=()=>{setShowTag(true)}}
+                                onChange={(e) => {
+                                    setShowTag(true)
+                                    setUser(prev => ({ ...prev, education: e.target.value }))
+                                }}
                                 onBlur={handleBlur}
                                 className="text-end inputs"
                             >
@@ -234,7 +260,7 @@ const Signin = ({ parentCallback }) => {
                                 required
                                 id="locOfEducation-input"
                                 name="locOfEducation"
-                                onChange={handleChange}
+                                onChange={(e) => setUser(prev => ({ ...prev, locOfEducation: e.target.value }))}
                                 onBlur={handleBlur}
 
                                >
