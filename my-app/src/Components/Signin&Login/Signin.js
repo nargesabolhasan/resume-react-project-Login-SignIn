@@ -111,16 +111,18 @@ const Signin = ({ parentCallback }) => {
                     }
                     return errors;
                 }}
-                onSubmit={(values, { setSubmitting }) => {
+                onSubmit={(values, { setSubmitting, resetForm }) => {
                     setTimeout(() => {
                         handleSubmit()
                         setSubmitting(false);
                         pushValToState(values)
+                        resetForm({})
                     }, 400);
                     console.log(user)
                 }}
             >
                 {({
+                    isValid,
                     values,
                     errors,
                     touched,
@@ -294,7 +296,11 @@ const Signin = ({ parentCallback }) => {
                                 })}
                             </Form.Select>
                         </Form.Group>}
-                        <Button className="col-12 buttons" variant="primary" type="submit">
+                        <Button
+                            className="col-12 buttons"
+                            variant="primary"
+                            type="submit"
+                            disabled={!isValid}>
                             ثبت نام
                         </Button>
                     </Form>
