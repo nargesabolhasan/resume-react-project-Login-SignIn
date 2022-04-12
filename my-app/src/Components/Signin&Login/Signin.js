@@ -8,6 +8,7 @@ import { Formik } from 'formik';
 
 
 const Signin = ({ parentCallback }) => {
+    const iranstatesURL="./iranstates.json"
     //..........declared ref..........//
     const selectInput2 = useRef(null);
     //..........declared ref..........//
@@ -16,59 +17,24 @@ const Signin = ({ parentCallback }) => {
     const [city, setCity] = useState({});
     //**state for selected city **//
     const [cityState, setCityState] = useState([]);
-    //**state for validation form **//
-    const [validated, setValidated] = useState(false);
     //**state for modal **//
     const [show, setShow] = useState(false);
     //**state for select tag  **//
     const [showTag, setShowTag] = useState(false);
     //**state for inputs **//
-    const [user, setUser] = useState(
-        {
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            education: '',
-            locOfEducation: '',
-            city: '',
-            locOfBirth: ''
-        }
-    )
+    const [user, setUser] = useState([])
     //-----show & clouse modal-------
     const handleShow = () => setShow(true);
-    const handleClose = () => {
-        setShow(false)
-        // window.location.reload(false);
-    };
+    const handleClose = () => setShow(false);
     //------handleSubmit------
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.stopPropagation();
-        } else {
-            setShowTag(false)
-            handleShow()
-            parentCallback(user)
-            setUser(
-                {
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    password: '',
-                    education: '',
-                    locOfEducation: '',
-                    city: '',
-                    locOfBirth: ''
-                }
-            )
-        }
-        setValidated(true);
+    const handleSubmit = () => {
+        setShowTag(false)
+        handleShow()
+        parentCallback(user)
     };
     //--------fetch----------
     useEffect(() => {
-        fetch("./iranstates.json")
+        fetch(iranstatesURL)
             .then((response) => response.json())
             .then(data => setCity(data))
     }, [])
@@ -85,23 +51,26 @@ const Signin = ({ parentCallback }) => {
             setCityState(stateOfSelectedCity)
         }
     }
-    //------open select tag-----------
-    const openSelectTag = () => {
-        setShowTag(true)
-    }
+
+
     return (
         <div className="col-8 mx-auto">
             <h1 className="text-center">رایگان ثبت نام کنید  </h1>
             <Formik
                 initialValues={{
-                    email: "",
-                    password: "",
-                    firstName: "",
-                    lastName: ""
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    password: '',
+                    education: '',
+                    locOfEducation: '',
+                    city: '',
+                    state: '',
+                    locOfBirth: ''
                 }}
                 validate={values => {
                     const errors = {};
-                    if (!values.email)  {
+                    if (!values.email) {
                         errors.email = 'Required';
                     } else if (
                         !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
@@ -121,18 +90,13 @@ const Signin = ({ parentCallback }) => {
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                     setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
+                        handleSubmit()
                         setSubmitting(false);
+                        setUser(JSON.stringify(values, null, 2))
                     }, 400);
 
-                    setUser(prev => ({
-                        ...prev,
-                        firstName: values.firstName,
-                        lastName: values.lastName,
-                        email: values.email,
-                        password: values.password
-                    }))
-                    console.log(user)
+                    
+                    console.log(values)
                 }}
             >
                 {({
@@ -146,8 +110,6 @@ const Signin = ({ parentCallback }) => {
                     <Form
                         ref={form}
                         className='text-end '
-                        noValidate
-                        validated={validated}
                         onSubmit={handleSubmit}
                     >
                         <div className="d-flex flex-row justify-content-center">
@@ -208,60 +170,56 @@ const Signin = ({ parentCallback }) => {
                         <p className="error">
                             {errors.password && touched.password && errors.password}
                         </p>
+                        <>
                         <Form.Group className="mb-3 " >
                             <Form.Label className="text-white fs-5">استان</Form.Label>
                             <Form.Select
                                 className="text-end inputs"
+                                id="city-input"
+                                name="city"
+                                onChange={handleChange=(e)=>{selectCityState(e)}}
+                                onBlur={handleBlur}
+                                value={values.city}
                                 required
-                                onChange={(e) => {
-                                    selectCityState(e)
-                                    setUser(prev => ({ ...prev, city: e.target.value }))
-                                }
-                                }
                             >
-                                <option defaultValue></option>
-                                {Object.keys(city).map((item, i) => {
+                                 <option ></option>
+                                {Object.keys(city)?.map((item, i) => {
                                     return <option key={i}>{item}</option>
                                 })}
                             </Form.Select >
                         </Form.Group>
+                        </>
+                        <>
                         <Form.Group className="mb-3" >
                             <Form.Label className="text-white fs-5">(ابتدا استان انتخاب شود)شهرستان</Form.Label>
                             <Form.Select
+                                required
+                                value={values.state}
+                                id="state-input"
+                                name="state"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
                                 ref={selectInput2}
                                 className="text-end inputs"
-                                onChange={(e) => setUser(prev => ({ ...prev, education: e.target.value }))} >
-                                <option defaultValue></option>
+                            >
+                                <option></option>
                                 {cityState.map((item, index) => (
                                     <option key={index}>{item}</option>
                                 ))}
                             </Form.Select >
                         </Form.Group>
-
-                        <Form.Group className="mb-3" >
-                            <Form.Label className="text-white fs-5">محل تولد</Form.Label>
-                            <Form.Select
-                                className="text-end inputs"
-                                onChange={(e) => setUser(prev => ({ ...prev, locOfBirth: e.target.value }))}
-                                required
-                            >
-                                <option defaultValue ></option>
-                                {Object.keys(city).map((item, i) => {
-                                    return <option key={i}>{item}</option>
-                                })}
-                            </Form.Select>
-                        </Form.Group>
-
+                        </>
                         <Form.Group className="mb-3" >
                             <Form.Label className="text-white fs-5">مدرک تحصیلی</Form.Label>
                             <Form.Select
+                                required
+                                id="education-input"
+                                name="education"
+                                onChange={handleChange=()=>{setShowTag(true)}}
+                                onBlur={handleBlur}
                                 className="text-end inputs"
-                                onChange={(e) => {
-                                    openSelectTag()
-                                    setUser(prev => ({ ...prev, education: e.target.value }))
-                                }
-                                } >
-                                <option></option>
+                            >
+                                 <option></option>
                                 <option>دیپلم</option>
                                 <option> کارشناسی پیوسته </option>
                                 <option>کارشناسی ناپیوسته </option>
@@ -273,9 +231,14 @@ const Signin = ({ parentCallback }) => {
                             <Form.Label className="text-white fs-5">محل تحصیل</Form.Label>
                             <Form.Select
                                 className="text-end inputs"
-                                onChange={(e) => setUser(prev => ({ ...prev, locOfEducation: e.target.value }))}
-                                required>
-                                <option defaultValue></option>
+                                required
+                                id="locOfEducation-input"
+                                name="locOfEducation"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+
+                               >
+                                <option></option>
                                 {Object.keys(city).map((item, i) => {
                                     return <option className="inputs" key={i}>{item}</option>
                                 })}
