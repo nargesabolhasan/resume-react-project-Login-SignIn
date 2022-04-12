@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ShowPassword from '../ShowPassword/ShowPassword';
 import { useFormik } from 'formik';
 
-const Login = () => {
+const Login = ({parentCallback}) => {
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -12,6 +12,7 @@ const Login = () => {
         },
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
+            parentCallback(formik)
         },
         validate:values => {
             const errors = {};

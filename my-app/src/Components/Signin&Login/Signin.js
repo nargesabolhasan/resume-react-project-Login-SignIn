@@ -94,10 +94,10 @@ const Signin = ({ parentCallback }) => {
             <h1 className="text-center">رایگان ثبت نام کنید  </h1>
             <Formik
                 initialValues={{
-                    email: user.email,
-                    password: user.password,
-                    firstName: user.firstName,
-                    lastName: user.lastName
+                    email: "",
+                    password: "",
+                    firstName: "",
+                    lastName: ""
                 }}
                 validate={values => {
                     const errors = {};

@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "password": "",
+      "education": "",
+      "locOfEducation": "",
+      "city": "",
+      "state": "",
+      "locOfBirth": ""
+    }
+  ]
+}
