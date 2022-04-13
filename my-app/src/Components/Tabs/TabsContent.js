@@ -12,4 +12,4 @@ const TabsContent = (props) => {
     );
 };
 
-export default memo(TabsContent);
+export default TabsContent;

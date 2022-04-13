@@ -1,17 +1,16 @@
-import { React, useState, useEffect, useRef, memo } from 'react';
+import { React, useState, useEffect, useRef, useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modals from '../Modal/Modal';
 import ShowPassword from '../ShowPassword/ShowPassword';
 import { Formik } from 'formik';
 import axios from "axios";
-
+import { jsonURL } from "../ConstanatURL/ConstURL"
 
 
 const Signin = () => {
-    const iranstatesURL = "./iranstates.json"
-    const jsonURL = "http://localhost:3001/users"
 
+    const iranstatesURL = "./iranstates.json"
     //..........declared ref..........//
     const selectInput2 = useRef(null);
     //..........declared ref..........//
@@ -41,9 +40,7 @@ const Signin = () => {
             .then(function (response) {
                 console.log(response.data);
             })
-            .catch(function (error) {
-                console.log(error);
-            })
+            .catch((cth) => alert("url not found"))
             .finally(setLoading(false))
     };
     //--------fetch----------
@@ -52,18 +49,11 @@ const Signin = () => {
             .then((response) => response.json())
             .then(data => setCity(data))
     }, [])
-
-    useEffect(() => {
-
-    }, [user])
-
-
-
     //------change options of select tag-----------
     const selectCityState = (e) => {
         let cityList = e.target;
         let stateOfCity = selectInput2.current
-        let selectedCity = cityList.options[cityList.selectedIndex].index-1;
+        let selectedCity = cityList.options[cityList.selectedIndex].index - 1;
         while (stateOfCity.options.length) {
             stateOfCity.remove(0);
         }
@@ -91,29 +81,29 @@ const Signin = () => {
                 validate={values => {
                     const errors = {};
                     if (!values.email) {
-                        errors.email = 'Required';
+                        errors.email = 'این بخش الزامی است';
                     } else if (
                         !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
                     ) {
-                        errors.email = 'Invalid email address';
+                        errors.email = 'ایمیل نا معتبر است';
                     }
                     if (values.password.length < 8) {
-                        errors.password = 'password have to be at least 8 characters';
+                        errors.password = 'پسورد حداقل 8 کاراکتر باشد';
                     }
                     if (values.firstName.length < 3) {
-                        errors.firstName = 'first Name have to be at least 3 characters';
+                        errors.firstName = 'نام حداقل 3 حرف داشته باشد';
                     }
                     if (values.lastName.length < 3) {
-                        errors.lastName = 'last Name have to be at least 3 characters';
+                        errors.lastName = 'نام خانوادگی حداقل 3 حرف داشته باشد';
                     }
                     if (!values.city) {
-                        errors.city = 'Required';
+                        errors.city = 'این بخش الزامی است ';
                     }
                     if (!values.state) {
-                        errors.state = 'Required';
+                        errors.state = 'این بخش الزامی است';
                     }
                     if (!values.locOfBirth) {
-                        errors.locOfBirth = 'Required';
+                        errors.locOfBirth = 'این بخش الزامی است';
                     }
                     return errors;
                 }}
@@ -122,7 +112,6 @@ const Signin = () => {
                         handleSubmit(values)
                         setSubmitting(false);
                         resetForm({})
-                        // setUser(values)
                     }, 400);
                 }}
             >
@@ -141,9 +130,9 @@ const Signin = () => {
                         onSubmit={handleSubmit}
                     >
                         <div className="d-flex flex-row justify-content-center">
-                            <Form.Group className="mb-3 me-1 col-6" >
+                            <Form.Group className="d-flex flex-column mb-3 me-1 col-6" >
                                 <Form.Control
-                                    className="text-end inputs"
+                                    className="text-end inputs col-12"
                                     id="lastName-input"
                                     type="text"
                                     name="lastName"
@@ -153,11 +142,12 @@ const Signin = () => {
                                     placeholder="نام خانوادگی"
                                     required
                                 />
+                                <p className="error col-12">
+                                    {errors.lastName && touched.lastName && errors.lastName}
+                                </p>
                             </Form.Group>
-                            <p className="error">
-                                {errors.lastName && touched.lastName && errors.lastName}
-                            </p>
-                            <Form.Group className="mb-3 col-6" >
+
+                            <Form.Group className="d-flex flex-column mb-3 me-1 col-6" >
                                 <Form.Control
                                     className="text-end inputs"
                                     id="firstName-input"
@@ -169,10 +159,10 @@ const Signin = () => {
                                     placeholder="نام "
                                     required
                                 />
+                                <p className="error col-12">
+                                    {errors.firstName && touched.firstName && errors.firstName}
+                                </p>
                             </Form.Group>
-                            <p className="error">
-                                {errors.firstName && touched.firstName && errors.firstName}
-                            </p>
                         </div>
                         <Form.Group className="mb-3" >
                             <Form.Control
@@ -221,6 +211,9 @@ const Signin = () => {
                                     </Form.Select >
                                 </>
                             </Form.Group>
+                            <p className="error col-12">
+                                {errors.city && touched.city && errors.city}
+                            </p>
                         </>
                         <>
                             <Form.Group className="mb-3" >
@@ -241,6 +234,9 @@ const Signin = () => {
                                     ))}
                                 </Form.Select >
                             </Form.Group>
+                            <p className="error col-12">
+                                {errors.state && touched.state && errors.state}
+                            </p>
                         </>
                         <>
                             <Form.Group className="mb-3" >
@@ -260,6 +256,9 @@ const Signin = () => {
                                     })}
                                 </Form.Select >
                             </Form.Group>
+                            <p className="error col-12">
+                                {errors.locOfBirth && touched.locOfBirth && errors.locOfBirth}
+                            </p>
                         </>
 
                         <Form.Group className="mb-3" >
@@ -283,6 +282,7 @@ const Signin = () => {
                                 <option>دکتری </option>
                             </Form.Select>
                         </Form.Group>
+                    
                         {showTag && <Form.Group className="mb-3" >
                             <Form.Label className="text-white fs-5">محل تحصیل</Form.Label>
                             <Form.Select
@@ -301,6 +301,11 @@ const Signin = () => {
                                 })}
                             </Form.Select>
                         </Form.Group>}
+                        <p className="error col-12">
+                            {errors.locOfEducation && touched.locOfEducation && errors.locOfEducation}
+                        </p>
+
+
                         <Button
                             className="col-12 buttons"
                             variant="primary"
@@ -325,6 +330,6 @@ const Signin = () => {
     )
 }
 
-export default memo(Signin)
+export default Signin
 
 

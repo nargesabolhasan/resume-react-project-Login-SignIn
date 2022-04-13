@@ -104,3 +104,7 @@ h1{
   content:'\2717 شکست';
   color:red;
 }
+.error{
+  color:red;
+  font-size:20px;
+}

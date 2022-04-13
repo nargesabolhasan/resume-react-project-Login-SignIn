@@ -1,12 +1,18 @@
-import { React, useState, useEffect, useCallback } from 'react';
+import { React, useState, useEffect, useCallback, useContext } from 'react';
 import TabsItem from './TabsItem';
 import TabsList from './TabsList';
 import TabsContent from './TabsContent';
 import Signin from '../Signin&Login/Signin';
 import Login from '../Signin&Login/Login';
 import Modals from '../Modal/Modal';
+import axios from "axios";
+import { jsonURL } from "../ConstanatURL/ConstURL"
+import { isAuthenticatedContext } from '../Context/AuthContext'
 
 const Tabs = () => {
+
+
+    const { addToUser ,OpenWelcome} = useContext(isAuthenticatedContext)
     //**state for tabs **// 
     const [data, setData] = useState([
         { id: 1, title: "ثبت نام" },
@@ -24,6 +30,9 @@ const Tabs = () => {
     const [modalText, setModalText] = useState('');
     //**state for style of modal **//
     const [modalStyle, setModalStyle] = useState('');
+    //**state for axios loading**//
+    const [loading, setLoading] = useState(false);
+
 
 
     //----handleClick ------
@@ -33,11 +42,24 @@ const Tabs = () => {
     //----handle Login ------
     const handleLogin = (input) => {
         setLogin(input);
-        // checkUser()
+        checkUser()
     };
     //----check pass and email is valid------
-  
+    const checkUser = useCallback(() => {
+        signin.forEach(item => {
+            if (item.password === login.password && item.email === login.email) {
+                addToUser(item);
+                OpenWelcome(true);
+            } else {
+                handleShow("رمز یا ایمیل اشتباه است","failer")
+            }
+        })
+    }, [login])
 
+    //----useEffect-------
+    useEffect(() => {
+        checkUser()
+    }, [login])
 
     //-----show & close modal-------
     const handleShow = (text, style) => {
@@ -46,15 +68,19 @@ const Tabs = () => {
         setModalStyle(style)
     }
     //----handle Signin------
-
+    useEffect(() => {
+        setLoading(true);
+        axios
+            .get(jsonURL)
+            .then((res) => setSignin(res.data))
+            .catch((cth) => alert("url not found"))
+            .finally(() => setLoading(false));
+    }, []);
     //----close modal-------
     const handleClose = () => {
         setShow(false)
     };
-    //----useEffect-------
-    useEffect(() => {
-        // checkUser()
-    }, [login])
+
 
     return (
         <div>
@@ -68,7 +94,7 @@ const Tabs = () => {
                 ))}
             </TabsList>
             <TabsContent tabId='0' activeTab={selectedTAb}>
-                <Signin/>
+                <Signin />
             </TabsContent>
             <TabsContent tabId='1' activeTab={selectedTAb}>
                 <Login parentCallback={handleLogin} />

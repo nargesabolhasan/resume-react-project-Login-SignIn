@@ -1,8 +1,9 @@
-import { React, useState } from 'react';
+import { React, useState ,useContext} from 'react';
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ShowPassword from '../ShowPassword/ShowPassword';
 import { useFormik } from 'formik';
+
 
 const Login = ({parentCallback}) => {
     const formik = useFormik({
@@ -11,8 +12,7 @@ const Login = ({parentCallback}) => {
             password: '',
         },
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-            parentCallback(formik)
+            parentCallback(values)
         },
         validate:values => {
             const errors = {};
@@ -23,8 +23,8 @@ const Login = ({parentCallback}) => {
             ) {
                 errors.email = 'Invalid email address';
             }
-            if (values.password.length < 6) {
-                errors.password = 'password have to be at least 6 characters';
+            if (values.password.length < 8) {
+                errors.password = 'password have to be at least 8 characters';
             }
             return errors;
         }

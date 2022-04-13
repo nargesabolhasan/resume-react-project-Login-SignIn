@@ -1,11 +1,14 @@
 import Tabs from './Components/Tabs/Tabs'
 import './App.css'
+import AuthContextProvider from "./Components/Context/AuthContext"
 function App() {
   return (
     <>
-    <div className="App">
-      <Tabs/>
-    </div>
+      <div className="App">
+        <AuthContextProvider>
+        <Tabs />
+        </AuthContextProvider>
+      </div>
     </>
   );
 }
