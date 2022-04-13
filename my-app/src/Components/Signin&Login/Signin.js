@@ -36,7 +36,7 @@ const Signin = ({ parentCallback }) => {
     const handleSubmit = () => {
         setShowTag(false)
         handleShow()
-        parentCallback(user)
+        // parentCallback(user)
         //axios:
         setLoading(true);
         axios.post(jsonURL, user)
@@ -54,14 +54,6 @@ const Signin = ({ parentCallback }) => {
             .then((response) => response.json())
             .then(data => setCity(data))
     }, [])
-    //----------------------
-    const pushValToState = (input) => {
-        setUser(input)
-    }
-    //----------------------
-    useEffect(() => {
-        pushValToState(user)
-    }, [user])
     //------change options of select tag-----------
     const selectCityState = (e) => {
         let cityList = e.target;
@@ -100,14 +92,14 @@ const Signin = ({ parentCallback }) => {
                     ) {
                         errors.email = 'Invalid email address';
                     }
-                    if (values.password.length < 6) {
-                        errors.password = 'password have to be at least 6 characters';
+                    if (values.password.length < 8) {
+                        errors.password = 'password have to be at least 8 characters';
                     }
-                    if (values.firstName.length < 6) {
-                        errors.firstName = 'first Name have to be at least 6 characters';
+                    if (values.firstName.length < 3) {
+                        errors.firstName = 'first Name have to be at least 3 characters';
                     }
-                    if (values.lastName.length < 6) {
-                        errors.lastName = 'last Name have to be at least 6 characters';
+                    if (values.lastName.length < 3) {
+                        errors.lastName = 'last Name have to be at least 3 characters';
                     }
                     return errors;
                 }}
@@ -115,10 +107,9 @@ const Signin = ({ parentCallback }) => {
                     setTimeout(() => {
                         handleSubmit()
                         setSubmitting(false);
-                        pushValToState(values)
                         resetForm({})
+                        setUser(values)
                     }, 400);
-                    console.log(user)
                 }}
             >
                 {({

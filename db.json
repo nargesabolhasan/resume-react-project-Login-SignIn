@@ -4,43 +4,21 @@
       "id": 1
     },
     {
-      "id": 2
-    },
-    {
-      "id": 3
-    },
-    {
       "firstName": "narges",
       "lastName": "abolhasan",
       "email": "abcdefg@yahoo.com",
-      "password": "555555555555555555555555",
-      "education": "کارشناسی ارشد",
-      "locOfEducation": "سيستان و بلوچستان",
-      "city": "فارس",
-      "state": "بوئين زهرا",
+      "password": "555555555555",
+      "city": "تهران",
       "locOfBirth": "قزوين",
-      "id": 4
+      "id": 2
     },
     {
-      "id": 5
-    },
-    {
-      "firstName": "narges",
-      "lastName": "abolhasan",
-      "email": "nanihaj338@yahoo.com",
-      "password": "5555555555555555",
-      "city": "فارس",
-      "locOfBirth": "قزوين",
-      "id": 6
-    },
-    {
-      "id": 7
-    },
-    {
-      "id": 8
-    },
-    {
-      "id": 9
+      "firstName": "ggggggggggggdtf",
+      "lastName": "dfdfgdfgdfgfdgdg",
+      "email": "hhhhh@gdfhgdfhfdhfsdh.com",
+      "password": "5555555555555555555555",
+      "locOfBirth": "سمنان",
+      "id": 3
     }
   ]
 }
