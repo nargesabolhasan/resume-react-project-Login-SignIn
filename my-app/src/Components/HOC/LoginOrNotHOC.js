@@ -1,19 +1,19 @@
-import React, { Component } from 'react'
-import { isAuthenticatedContext } from '../Context/AuthContext'
+import React, { useContext } from "react";
+import { isAuthenticatedContext } from "../Context/AuthContext";
+import Tabs from "../Tabs/Tabs";
 
-const LoginOrNotHOC = () => {
-  return function withLogOrNot({ ...props }) {
-    const { isSignin } = useContext(isAuthenticatedContext)
-
-   
+const WithRendering = (Component) => {
+  function WithRenderingComponent({ ...props }) {
+    const { isSignin,user } = useContext(isAuthenticatedContext);
     return (
-      <div>
-        {isSignin && <Component  signComp={} WelComp={}/>}
-      </div>
-    )
+      <>
+        
+        {isSignin ?  <Component data={user} { ...props }/>:  <Tabs {...props} />}
+      
+      </>
+    );
   }
-  
- 
-}
+  return WithRenderingComponent;
+};
 
-export default LoginOrNotHOC
+export default WithRendering;

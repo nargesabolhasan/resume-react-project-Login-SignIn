@@ -8,6 +8,7 @@ import Modals from '../Modal/Modal';
 import axios from "axios";
 import { jsonURL } from "../ConstanatURL/ConstURL"
 import { isAuthenticatedContext } from '../Context/AuthContext'
+import AuthenticatedRoute from '../HOC/LoginOrNotHOC'
 
 const Tabs = () => {
 

@@ -11,7 +11,6 @@ const AuthContextProvider = ({children}) => {
         isSignin,
         addToUser: (info) => setUser(info),
         OpenWelcome:(info) => setIsSignin(info),
-
     }
     console.log(user)
 
