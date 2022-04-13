@@ -1,24 +1,5 @@
 {
   "users": [
-    {
-      "id": 1
-    },
-    {
-      "firstName": "narges",
-      "lastName": "abolhasan",
-      "email": "abcdefg@yahoo.com",
-      "password": "555555555555",
-      "city": "تهران",
-      "locOfBirth": "قزوين",
-      "id": 2
-    },
-    {
-      "firstName": "ggggggggggggdtf",
-      "lastName": "dfdfgdfgdfgfdgdg",
-      "email": "hhhhh@gdfhgdfhfdhfsdh.com",
-      "password": "5555555555555555555555",
-      "locOfBirth": "سمنان",
-      "id": 3
-    }
+
   ]
 }

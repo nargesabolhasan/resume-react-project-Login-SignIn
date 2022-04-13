@@ -33,24 +33,10 @@ const Tabs = () => {
     //----handle Login ------
     const handleLogin = (input) => {
         setLogin(input);
-        checkUser()
+        // checkUser()
     };
     //----check pass and email is valid------
-    const checkUser = useCallback(() => {
-        signin.forEach(item => {
-            (item.pasword === login.password && item.email === login.email) ?
-                handleShow('خوش آمدید', 'succsess') : handleShow('رمز یا پست الکترونیک اشتباه است', 'failer')
-        })
-    }, [login])
-    
-
-    // const checkUser =useCallback( () => {
-    //     signin.forEach(item=> {
-    //         let arrayOfSignin = Object.values(item)
-    //         arrayOfSignin.includes(login.password,login.email) ?
-    //         handleShow('خوش آمدید', 'succsess') : handleShow('رمز یا پست الکترونیک اشتباه است', 'failer')
-    //     })
-    // },[login])
+  
 
 
     //-----show & close modal-------
@@ -60,17 +46,14 @@ const Tabs = () => {
         setModalStyle(style)
     }
     //----handle Signin------
-    const handleSignin = useCallback((input) => {
-        const newSignin = [...signin, input];
-        setSignin(newSignin);
-    }, [signin]);
+
     //----close modal-------
     const handleClose = () => {
         setShow(false)
     };
     //----useEffect-------
     useEffect(() => {
-        checkUser()
+        // checkUser()
     }, [login])
 
     return (
@@ -85,11 +68,10 @@ const Tabs = () => {
                 ))}
             </TabsList>
             <TabsContent tabId='0' activeTab={selectedTAb}>
-                <Signin parentCallback={handleSignin} />
+                <Signin/>
             </TabsContent>
             <TabsContent tabId='1' activeTab={selectedTAb}>
                 <Login parentCallback={handleLogin} />
-
             </TabsContent>
             <Modals
                 handleShow={() => handleShow()}

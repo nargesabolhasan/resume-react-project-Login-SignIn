@@ -8,9 +8,9 @@ import axios from "axios";
 
 
 
-const Signin = ({ parentCallback }) => {
+const Signin = () => {
     const iranstatesURL = "./iranstates.json"
-    const jsonURL = "http://localhost:3002/users"
+    const jsonURL = "http://localhost:3001/users"
 
     //..........declared ref..........//
     const selectInput2 = useRef(null);
@@ -29,17 +29,15 @@ const Signin = ({ parentCallback }) => {
     //**state for axios loading**//
     const [loading, setLoading] = useState(false);
     //-----show & clouse modal-------
-
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
     //------handleSubmit------
-    const handleSubmit = () => {
+    const handleSubmit = (userInfo) => {
         setShowTag(false)
         handleShow()
-        // parentCallback(user)
         //axios:
         setLoading(true);
-        axios.post(jsonURL, user)
+        axios.post(jsonURL, userInfo)
             .then(function (response) {
                 console.log(response.data);
             })
@@ -54,11 +52,18 @@ const Signin = ({ parentCallback }) => {
             .then((response) => response.json())
             .then(data => setCity(data))
     }, [])
+
+    useEffect(() => {
+
+    }, [user])
+
+
+
     //------change options of select tag-----------
     const selectCityState = (e) => {
         let cityList = e.target;
         let stateOfCity = selectInput2.current
-        let selectedCity = cityList.options[cityList.selectedIndex].index;
+        let selectedCity = cityList.options[cityList.selectedIndex].index-1;
         while (stateOfCity.options.length) {
             stateOfCity.remove(0);
         }
@@ -101,14 +106,23 @@ const Signin = ({ parentCallback }) => {
                     if (values.lastName.length < 3) {
                         errors.lastName = 'last Name have to be at least 3 characters';
                     }
+                    if (!values.city) {
+                        errors.city = 'Required';
+                    }
+                    if (!values.state) {
+                        errors.state = 'Required';
+                    }
+                    if (!values.locOfBirth) {
+                        errors.locOfBirth = 'Required';
+                    }
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setTimeout(() => {
-                        handleSubmit()
+                        handleSubmit(values)
                         setSubmitting(false);
                         resetForm({})
-                        setUser(values)
+                        // setUser(values)
                     }, 400);
                 }}
             >
