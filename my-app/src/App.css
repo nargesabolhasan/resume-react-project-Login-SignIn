@@ -1,8 +1,26 @@
-body{
+#root{
   background-color: rgb(40, 53, 65);
   margin-top:0px;
   padding-top:30px;
+  width:100%;
 }
+.App{
+  background-color: rgb(40, 53, 65);
+  font-size:18px;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:start;
+  align-items: center;
+  height:98vh;
+
+}
+.welcome{
+  margin-top:100px;
+  color:rgb(23, 172, 140);
+  font-size:50px
+}
+
 .inputs{
   background-color: rgb(40, 53, 65);
   border:1px solid rgb(126, 126, 126);

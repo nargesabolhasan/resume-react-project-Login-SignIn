@@ -5,12 +5,10 @@ import Modals from '../Modal/Modal';
 import ShowPassword from '../ShowPassword/ShowPassword';
 import { Formik } from 'formik';
 import axios from "axios";
-import { jsonURL } from "../ConstanatURL/ConstURL"
-
+import { jsonURL,iranstatesURL} from "../ConstanatURL/ConstURL"
+import '../Tabs/TAB.css'
 
 const Signin = () => {
-
-    const iranstatesURL = "./iranstates.json"
     //..........declared ref..........//
     const selectInput2 = useRef(null);
     //..........declared ref..........//

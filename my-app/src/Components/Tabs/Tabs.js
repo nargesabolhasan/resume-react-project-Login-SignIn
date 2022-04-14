@@ -8,12 +8,11 @@ import Modals from '../Modal/Modal';
 import axios from "axios";
 import { jsonURL } from "../ConstanatURL/ConstURL"
 import { isAuthenticatedContext } from '../Context/AuthContext'
-import AuthenticatedRoute from '../HOC/LoginOrNotHOC'
 
 const Tabs = () => {
 
 
-    const { addToUser ,OpenWelcome} = useContext(isAuthenticatedContext)
+    const { addToUser} = useContext(isAuthenticatedContext)
     //**state for tabs **// 
     const [data, setData] = useState([
         { id: 1, title: "ثبت نام" },
@@ -50,7 +49,6 @@ const Tabs = () => {
         signin.forEach(item => {
             if (item.password === login.password && item.email === login.email) {
                 addToUser(item);
-                OpenWelcome(true);
             } else {
                 handleShow("رمز یا ایمیل اشتباه است","failer")
             }

@@ -1,11 +1,11 @@
-import { React, useState ,useContext} from 'react';
+import { React, useState, useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ShowPassword from '../ShowPassword/ShowPassword';
 import { useFormik } from 'formik';
 
 
-const Login = ({parentCallback}) => {
+const Login = ({ parentCallback }) => {
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -14,25 +14,25 @@ const Login = ({parentCallback}) => {
         onSubmit: values => {
             parentCallback(values)
         },
-        validate:values => {
+        validate: values => {
             const errors = {};
-            if (!values.email)  {
-                errors.email = 'Required';
+            if (!values.email) {
+                errors.email = 'این بخش الزامی است';
             } else if (
                 !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
             ) {
-                errors.email = 'Invalid email address';
+                errors.email = 'ایمیل نا معتبر است';
             }
             if (values.password.length < 8) {
-                errors.password = 'password have to be at least 8 characters';
+                errors.password = 'رمز حداقل 8 کاراکتر باشد';
             }
             return errors;
-        }
+        },
     });
 
     //
     return (
-        <div className="col-8 mx-auto">
+        <div className="col-8 mx-auto" style={{ height: "85vh" }}>
             <h1 className="text-center">خوش آمدید</h1>
             <Form onSubmit={formik.handleSubmit} >
                 <Form.Group className="mb-3" >
@@ -47,13 +47,13 @@ const Login = ({parentCallback}) => {
                         required
                     />
                 </Form.Group>
-                <p className="error">
+                <p className="error" style={{ direction: "rtl" }}>
                     {formik.errors.email}
                 </p>
                 <ShowPassword
                     value={formik.values.password}
                     onChange={formik.handleChange} />
-                <p className="error">
+                <p className="error" style={{ direction: "rtl" }}>
                     {formik.errors.password}
                 </p>
 

@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
 import { isAuthenticatedContext } from "../Context/AuthContext";
-import Tabs from "../Tabs/Tabs";
+
+import Tabs from "../Tabs/Tabs"
 
 const WithRendering = (Component) => {
   function WithRenderingComponent({ ...props }) {
-    const { isSignin,user } = useContext(isAuthenticatedContext);
+    const { user, logOutUser } = useContext(isAuthenticatedContext);
     return (
       <>
-        
-        {isSignin ?  <Component data={user} { ...props }/>:  <Tabs {...props} />}
-      
+        {user ? <Component
+          name={user.firstName}
+          logout={logOutUser}
+        {...props}
+        /> : <Tabs {...props} />}
       </>
     );
   }

@@ -1,19 +1,15 @@
-import Tabs from './Components/Tabs/Tabs'
 import './App.css'
-import AuthContextProvider from "./Components/Context/AuthContext"
-import LoginOrNotHOC from "./Components/HOC/LoginOrNotHOC"
-import Welcome from './Components/Signin&Login/Welcome';
-function App() {
+import { Button } from 'react-bootstrap';
+import WithRendering from "./Components/HOC/LoginOrNotHOC"
+
+function App({ name,logout }) {
   return (
-    <>
       <div className="App">
-        <AuthContextProvider>
-        <Tabs/> 
-        {/* <Welcome/> */}
-        </AuthContextProvider>
+        <h1 className="welcome">خوش آمدید</h1>
+        <h2> عزیز {name} سلام</h2>
+        <Button className="buttons" onClick={logout}>خروج</Button>
       </div>
-    </>
   );
 }
 
-export default App;
+export default WithRendering(App);

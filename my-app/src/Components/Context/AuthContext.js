@@ -4,13 +4,11 @@ export const isAuthenticatedContext = createContext();
 
 const AuthContextProvider = ({children}) => {
 
-    const [user, setUser] = useState("")
-    const [isSignin, setIsSignin] = useState(false);
+    const [user, setUser] = useState()
     const value = {
         user,
-        isSignin,
         addToUser: (info) => setUser(info),
-        OpenWelcome:(info) => setIsSignin(info),
+        logOutUser: () => setUser(),
     }
     console.log(user)
 
