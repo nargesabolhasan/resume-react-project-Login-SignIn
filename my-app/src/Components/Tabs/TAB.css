@@ -1,0 +1,48 @@
+.inputs{
+    background-color: rgb(40, 53, 65);
+    border:1px solid rgb(126, 126, 126);
+    border-radius:0px;
+    color:white;
+    margin: 2px;
+    height: 50px;
+    margin: 5px;
+  }
+  .buttons{
+    background-color: rgb(23, 172, 140);
+    border-color: rgb(23, 172, 140);
+    color: white;
+    font-size:18px;
+    margin:30px 0;
+    margin-left: 5px;
+    border-radius:0px;
+  }
+  .forget{
+    color: rgb(23, 172, 140);
+    text-decoration: none;
+    float: right;
+    font-size:18px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;  
+  }
+  .forget:hover{
+    color: white;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;  
+  
+  }
+  .buttons:hover{
+    background-color: rgb(23, 172, 140);
+    border-color: rgb(23, 172, 140);
+  
+  }
+  .iconeHolder{
+    background-color: rgb(23, 172, 140);
+    height:50px;
+    margin-top: 5px;
+  }
+  h1{
+    color:white;
+    margin: 50px 0;
+  }

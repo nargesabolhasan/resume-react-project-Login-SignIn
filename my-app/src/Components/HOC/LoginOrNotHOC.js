@@ -11,6 +11,7 @@ const WithRendering = (Component) => {
         {user ? <Component
           name={user.firstName}
           logout={logOutUser}
+          data={user}
         {...props}
         /> : <Tabs {...props} />}
       </>
