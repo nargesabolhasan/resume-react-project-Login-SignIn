@@ -7,14 +7,13 @@ import { Formik } from "formik";
 import axios from "axios";
 import { jsonURL, iranstatesURL } from "../ConstanatURL/ConstURL";
 import "../Tabs/TAB.css";
+import higherOrederComponent from "../HOC/WithFetch";
 
-const Signin = () => {
+const Signin = ({url}) => {
   //..........declared ref..........//
   const selectInput2 = useRef(null);
   //..........declared ref..........//
   const form = useRef(null);
-  //**state for validation form **//
-  const [city, setCity] = useState({});
   //**state for selected city **//
   const [cityState, setCityState] = useState([]);
   //**state for modal **//
@@ -42,20 +41,15 @@ const Signin = () => {
       .catch((cth) => alert("url not found"))
       .finally(setLoading(false));
   };
-  //--------fetch----------
-  useEffect(() => {
-    axios.get(iranstatesURL).then((res) => setCity(res.data));
-  }, []);
-
   //------change options of select tag-----------
   const selectCityState = (e) => {
     let cityList = e.target;
     let stateOfCity = selectInput2.current;
-    let selectedCity = cityList.options[cityList.selectedIndex].index - 1;
+    let selectedCity = cityList.options[cityList.selectedIndex].index-1;
     while (stateOfCity.options.length) {
       stateOfCity.remove(0);
     }
-    let stateOfSelectedCity = Object.values(city)[selectedCity];
+    let stateOfSelectedCity = Object.values(url)[selectedCity];
     if (stateOfSelectedCity) {
       setCityState(stateOfSelectedCity);
     }
@@ -202,7 +196,7 @@ const Signin = () => {
                     required
                   >
                     <option></option>
-                    {Object.keys(city)?.map((item, i) => {
+                    {Object.keys(url)?.map((item, i) => {
                       return <option key={i}>{item}</option>;
                     })}
                   </Form.Select>
@@ -250,7 +244,7 @@ const Signin = () => {
                   className="text-end inputs"
                 >
                   <option></option>
-                  {Object.keys(city)?.map((item, i) => {
+                  {Object.keys(url)?.map((item, i) => {
                     return <option key={i}>{item}</option>;
                   })}
                 </Form.Select>
@@ -295,7 +289,7 @@ const Signin = () => {
                   onBlur={handleBlur}
                 >
                   <option></option>
-                  {Object.keys(city).map((item, i) => {
+                  {Object.keys(url).map((item, i) => {
                     return (
                       <option className="inputs" key={i}>
                         {item}
@@ -334,4 +328,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default higherOrederComponent(Signin,iranstatesURL);

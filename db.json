@@ -1,14 +1,5 @@
 {
   "users": [
-    {
-      "firstName": "narges",
-      "lastName": "abolhasan",
-      "email": "abcdefg@yahoo.com",
-      "password": "555555555555555555555",
-      "city": "فارس",
-      "state": "جهرم",
-      "locOfBirth": "فارس",
-      "id": 1
-    }
+
   ]
 }

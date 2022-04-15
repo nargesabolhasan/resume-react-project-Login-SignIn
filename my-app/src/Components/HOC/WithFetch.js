@@ -4,7 +4,7 @@ import axios from "axios";
 const higherOrederComponent = (Component, URLAddress) => {
   return function WithAjax({ ...props }) {
     const [loading, setLoading] = useState(false);
-    const [url, setURL] = useState();
+    const [url, setURL] = useState([]);
     useEffect(() => {
       setLoading(true);
       axios
