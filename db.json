@@ -1,54 +1,14 @@
 {
   "users": [
     {
-      "firstName": "نرگس",
-      "lastName": " حاج ابوالحسن",
-      "email": "abcdefg@yahoo.com",
-      "password": "555555555555555",
-      "city": "سمنان",
-      "state": "سرخه",
-      "locOfBirth": "قزوين",
-      "id": 2
-    },
-    {
-      "firstName": "abcde",
-      "lastName": "abcde",
-      "email": "nanihaj338@yahoo.com",
-      "password": "12345678",
-      "city": "فارس",
-      "state": "جهرم",
-      "locOfBirth": "قزوين",
-      "id": 3
-    },
-    {
-      "firstName": "ka;a;a;df",
-      "lastName": "dffdsfdsfsdfds",
-      "email": "abggggggggggggg@yahoo.com",
-      "password": "09127797431",
-      "city": "قزوين",
-      "state": "البرز",
-      "locOfBirth": "قم",
-      "id": 4
-    },
-    {
       "firstName": "narges",
       "lastName": "abolhasan",
-      "email": "fgfgfgfgfgfgfgfgfg@yahoo.com",
-      "password": "09912363137",
+      "email": "abcdefg@yahoo.com",
+      "password": "555555555555555555555",
       "city": "فارس",
-      "state": "جنت شهر",
-      "locOfBirth": "سمنان",
-      "id": 5
-    },
-    {
-      "firstName": "narges",
-      "lastName": "abcde",
-      "email": "ZZZZZZZ@yahoo.com",
-      "password": "0440908493",
-      "city": "سمنان",
-      "state": "دامغان",
-      "locOfBirth": "قزوين",
-      "id": 6
+      "state": "جهرم",
+      "locOfBirth": "فارس",
+      "id": 1
     }
   ]
 }
