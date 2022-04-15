@@ -111,7 +111,9 @@ const Signin = () => {
                         handleSubmit(values)
                         setSubmitting(false);
                         resetForm({})
-                    }, 400);
+                        window.location.reload(false);
+                    }, 1000);
+                   
                 }}
             >
                 {({

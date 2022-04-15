@@ -10,7 +10,7 @@ const AuthContextProvider = ({children}) => {
         addToUser: (info) => setUser(info),
         logOutUser: () => setUser(),
     }
-    console.log(user)
+
 
     return (
         <isAuthenticatedContext.Provider value={value}>
