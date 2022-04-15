@@ -1,26 +1,24 @@
 {
   "users": [
     {
-      "firstName": "نرگس",
-      "lastName": " حاج ابوالحسن",
-      "email": "narges.abolhasan@gmail.com",
-      "password": "12345678",
-      "education": "کارشناسی پیوسته",
-      "locOfEducation": "تهران",
-      "city": "تهران",
-      "state": "تهران",
-      "locOfBirth": "تهران",
-      "id": 6
+      "firstName": "abcde",
+      "lastName": "abcde",
+      "email": "abcdefg@yahoo.com",
+      "password": "45458884",
+      "city": "آذربايجان غربي",
+      "state": "ماكو",
+      "locOfBirth": "فارس",
+      "id": 1
     },
     {
-      "firstName": "ggggggggggggdtf",
-      "lastName": "dffdsfdsfsdfds",
+      "firstName": "نرگس",
+      "lastName": " حاج ابوالحسن",
       "email": "abcdefg@yahoo.com",
-      "password": "09127797431",
-      "city": "سيستان و بلوچستان",
-      "state": "راسك",
+      "password": "555555555555555",
+      "city": "سمنان",
+      "state": "سرخه",
       "locOfBirth": "قزوين",
-      "id": 7
+      "id": 2
     }
   ]
 }

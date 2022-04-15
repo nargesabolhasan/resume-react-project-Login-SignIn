@@ -43,10 +43,11 @@ const Signin = () => {
     };
     //--------fetch----------
     useEffect(() => {
-        fetch(iranstatesURL)
-            .then((response) => response.json())
-            .then(data => setCity(data))
+        axios.get(iranstatesURL)
+        .then((res) => setCity(res.data))
     }, [])
+   
+
     //------change options of select tag-----------
     const selectCityState = (e) => {
         let cityList = e.target;
@@ -197,6 +198,7 @@ const Signin = () => {
                                         onChange={e => {
                                             handleChange(e);
                                             selectCityState(e)
+                                          
                                         }}
                                         onBlur={handleBlur}
                                         value={values.city}
